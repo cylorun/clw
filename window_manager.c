@@ -26,6 +26,7 @@ DWORD getPID(HWND hwnd) {
 }
 
 void getAllOpenInstances(InstanceList *instanceList) {
+    memset(instanceList, 0, sizeof(InstanceList));
     EnumWindows(EnumWindowsProc, (LPARAM) instanceList);
 }
 
@@ -52,7 +53,7 @@ void setAllTitles(const InstanceList *instanceList) {
         itoa(instanceList->instances[i].num, num, 10);
 
         char newTitle[MAX_WIN_NAME_LEN];
-        snprintf(newTitle, sizeof(newTitle), "Instance %s", num);
+        snprintf(newTitle, sizeof(newTitle), "Minecraft* - Instance %s", num);
 
         setWindowText(instanceList->instances[i].hwnd, newTitle);
     }
