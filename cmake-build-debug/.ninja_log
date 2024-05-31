@@ -1,0 +1,25 @@
+# ninja log v5
+2	627	7388862805418080	CMakeFiles/culti.dir/culti.c.obj	952a3d281bdb9232
+1	105	7388793250741467	build.ninja	bc87eb9d21a9933b
+6	675	7388861580320105	CMakeFiles/culti.dir/window_manager.c.obj	acec78737553f26a
+628	713	7388862806248270	culti.exe	da64c7e1dda1bb13
+2	618	7388702322256060	CMakeFiles/culti.dir/window_management.c.obj	1fca4d016a7055dc
+5	597	7388704108435997	CMakeFiles/culti.dir/canes.c.obj	b6f1b9349431f192
+6	98	7388720338618171	CMakeFiles/culti.dir/gui.c.obj	eb95dab10a3ead71
+13	750	7388852436340366	CMakeFiles/culti.dir/command_manager.c.obj	f677d57769506ecd
+8	730	7388852436140324	CMakeFiles/culti.dir/reset_manager.c.obj	2ee4a66a89fd38fd
+6	644	7388856153731150	CMakeFiles/culti.dir/hotkey_manager.c.obj	24716fbee43192fe
+2	614	7388863105846139	CMakeFiles/culti.dir/culti.c.obj	952a3d281bdb9232
+614	699	7388863106669200	culti.exe	da64c7e1dda1bb13
+2	627	7388863231974079	CMakeFiles/culti.dir/culti.c.obj	952a3d281bdb9232
+627	710	7388863232774264	culti.exe	da64c7e1dda1bb13
+2	651	7388865531212159	CMakeFiles/culti.dir/window_manager.c.obj	acec78737553f26a
+651	739	7388865532072616	culti.exe	da64c7e1dda1bb13
+2	624	7388865678381256	CMakeFiles/culti.dir/culti.c.obj	952a3d281bdb9232
+624	704	7388865679151438	culti.exe	da64c7e1dda1bb13
+2	674	7388866186470177	CMakeFiles/culti.dir/window_manager.c.obj	acec78737553f26a
+674	755	7388866187260766	culti.exe	da64c7e1dda1bb13
+3	739	7388866384598462	CMakeFiles/culti.dir/window_manager.c.obj	acec78737553f26a
+739	823	7388866385409521	culti.exe	da64c7e1dda1bb13
+2	669	7388866525133683	CMakeFiles/culti.dir/reset_manager.c.obj	2ee4a66a89fd38fd
+670	758	7388866526000755	culti.exe	da64c7e1dda1bb13
