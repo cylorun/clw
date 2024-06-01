@@ -1,4 +1,0 @@
-C:/Users/alfgr/Desktop/projects/CnCPP/culti/cmake-build-debug/CMakeFiles/cJSON.dir
-C:/Users/alfgr/Desktop/projects/CnCPP/culti/cmake-build-debug/CMakeFiles/culti.dir
-C:/Users/alfgr/Desktop/projects/CnCPP/culti/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/alfgr/Desktop/projects/CnCPP/culti/cmake-build-debug/CMakeFiles/rebuild_cache.dir
