@@ -3,7 +3,7 @@
 #include "hotkey_manager.h"
 #include "window_manager.h"
 #include "reset_manager.h"
-#include "../culti.h"
+#include "../clw.h"
 #include "math.h"
 #include "../util.h"
 

@@ -1,10 +1,10 @@
-#include "../culti.h"
+#include "../clw.h"
 #include "command_manager.h"
 #include "../util.h"
 #include "window_manager.h"
 #include <stdio.h>
 
-void registerCommand(CommandList *list, const char *name, CommandFunction function) {
+void registerCommand(CommandList *list, const char *name, CommandFunction function, int minArgs, int maxArgs) {
     if (list->count < MAX_COMMANDS) {
         Command *newCommand = &list->commands[list->count++];
         newCommand->name = name;
@@ -15,8 +15,10 @@ void registerCommand(CommandList *list, const char *name, CommandFunction functi
 }
 
 void executeCommand(const CommandList *list, const char **args) {
+    int argc = 0;
     for (int i = 0; i < list->count; i++) {
         if (strcmp(list->commands[i].name, args[0]) == 0) {
+            if (list->commands[i].minArgs)
             list->commands[i].function(args + 1);
             return;
         }
@@ -25,10 +27,11 @@ void executeCommand(const CommandList *list, const char **args) {
 }
 
 void registerDefaultCommands(CommandList *list) {
-    registerCommand(list, "rd", &redetect);
-    registerCommand(list, "help", &help);
-    registerCommand(list, "titles", &titles);
-    registerCommand(list, "config", &config);
+    registerCommand(list, "rd", &redetect, 0, 0);
+    registerCommand(list, "help", &help, 0, 0);
+    registerCommand(list, "titles", &titles, 0, 0);
+    registerCommand(list, "config", &config, 0, 10);
+    registerCommand(list, "close",&close,1,1);
 }
 
 void help(const char **args) {
@@ -49,5 +52,13 @@ void titles(const char **args) {
 }
 
 void config(const char **args) {
+
+}
+
+void close(const char **args) {
+
+}
+
+void launch(const char **args) {
 
 }

@@ -8,8 +8,7 @@
 #include <stdlib.h>
 
 #define TOK_DELIMS " \t\r\n\a"
-#define CULTI_VERSION "v0.0.0"
-
+#define CLW_VERSION "v0.0.0"
 
 InstanceList instanceList = {0};
 CommandList commandList = {0};
@@ -25,7 +24,7 @@ InstanceList *getInstanceList() {
 }
 
 int main(int argc, char **argv) {
-    printf("Running Culti %s\n", CULTI_VERSION);
+    printf("Running Culti %s\n", CLW_VERSION);
 
     registerDefaultCommands(&commandList);
     registerDefaultHotkeys(&hotkeyList);

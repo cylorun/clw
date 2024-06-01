@@ -7,12 +7,12 @@ add_library(cJSON STATIC lib/cJSON-1.7.18/cJSON.c)
 
 
 add_executable(culti
-        src/culti.c
+        src/clw.c
         src/management/window_manager.h
         src/management/window_manager.c
         src/management/command_manager.c
         src/management/command_manager.h
-        src/culti.h
+        src/clw.h
         src/management/hotkey_manager.c
         src/management/hotkey_manager.h
         src/management/reset_manager.c
