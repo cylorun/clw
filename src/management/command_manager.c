@@ -16,9 +16,21 @@ void registerCommand(CommandList *list, const char *name, CommandFunction functi
 
 void executeCommand(const CommandList *list, const char **args) {
     int argc = 0;
+    while (args[argc] != NULL) {
+        argc++;
+    }
+
+    if (argc == 0) {
+        printf("No command given\n");
+        return;
+    }
+
     for (int i = 0; i < list->count; i++) {
         if (strcmp(list->commands[i].name, args[0]) == 0) {
-            if (list->commands[i].minArgs)
+            if (argc - 1 < list->commands[i].minArgs || argc - 1 > list->commands[i].maxArgs) {
+                printf("Incorrect argument count\n");
+                return;
+            }
             list->commands[i].function(args + 1);
             return;
         }
