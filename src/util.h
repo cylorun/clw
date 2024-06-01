@@ -9,6 +9,8 @@ char *replace(const char *str, const char *old, const char *new);
 
 char *read_line(void);
 
+int contains(char** list, char* sub);
+
 char *run_cmd(const char* command);
 
 int compareNum(const void *a, const void *b);

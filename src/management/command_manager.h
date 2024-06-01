@@ -19,7 +19,7 @@ typedef struct {
 } CommandList;
 
 
-void addCommand(CommandList *list, const char *name, CommandFunction function);
+void registerCommand(CommandList *list, const char *name, CommandFunction function);
 
 void executeCommand(const CommandList *list, const char **args);
 
@@ -33,4 +33,6 @@ void help(const char **args);
 void redetect(const char **args);
 
 void titles(const char **args);
+
+void config(const char **args);
 #endif

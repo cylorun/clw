@@ -27,7 +27,6 @@ InstanceList *getInstanceList() {
 int main(int argc, char **argv) {
     printf("Running Culti %s\n", CULTI_VERSION);
 
-    getAllOpenInstances(&instanceList);
     registerDefaultCommands(&commandList);
     registerDefaultHotkeys(&hotkeyList);
     initConfigManager();

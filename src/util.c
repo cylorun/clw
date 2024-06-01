@@ -29,7 +29,7 @@ char *read_line(void) {
         buffer[pos] = c;
         pos++;
         if (pos >= buff_size) {
-            buff_size += 2;
+            buff_size += buff_size;
             buffer = realloc(buffer, sizeof(char) * buff_size);
             if (!buffer) {
                 printf("allocation failure\n");
@@ -139,6 +139,18 @@ char *run_cmd(const char* command) {
         result[size] = '\0';
     }
     return result;
+}
+int contains(char** list, char* sub) {
+    int i = 0;
+    char* curr = list[i];
+    while (curr != NULL) {
+        if (strcmp(curr, sub) == 0) {
+            return 1;
+        }
+        curr = list[i++];
+    }
+
+    return 0;
 }
 
 int compareNum(const void *a, const void *b) {

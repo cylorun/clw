@@ -4,7 +4,7 @@
 #include "window_manager.h"
 #include <stdio.h>
 
-void addCommand(CommandList *list, const char *name, CommandFunction function) {
+void registerCommand(CommandList *list, const char *name, CommandFunction function) {
     if (list->count < MAX_COMMANDS) {
         Command *newCommand = &list->commands[list->count++];
         newCommand->name = name;
@@ -25,13 +25,14 @@ void executeCommand(const CommandList *list, const char **args) {
 }
 
 void registerDefaultCommands(CommandList *list) {
-    addCommand(list, "rd", &redetect);
-    addCommand(list, "help", &help);
-    addCommand(list, "titles", &titles);
+    registerCommand(list, "rd", &redetect);
+    registerCommand(list, "help", &help);
+    registerCommand(list, "titles", &titles);
+    registerCommand(list, "config", &config);
 }
 
 void help(const char **args) {
-    printf("<------->\n help\n redetect\n titles\n");
+    printf("<------->\n  help\n  redetect\n  titles\n  config\n");
 }
 
 void redetect(const char **args) {
@@ -40,6 +41,13 @@ void redetect(const char **args) {
 
 void titles(const char **args) {
     InstanceList *list = getInstanceList();
+    if (list->count < 1){
+        printf("No instances detected, will not set titles\n");
+        return;
+    }
     setAllTitles(list);
 }
 
+void config(const char **args) {
+
+}
