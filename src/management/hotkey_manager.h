@@ -24,7 +24,7 @@ void processHotkeys(HotkeyList *list);
 
 void *hotkeyThread(void *arg);
 
-void run(HotkeyList *list);
+void runHotkeys(HotkeyList *list);
 
 
 void registerDefaultHotkeys(HotkeyList *list);
@@ -32,5 +32,8 @@ void registerDefaultHotkeys(HotkeyList *list);
 // commands
 
 void resetAll();
+
+void resetSingle();
+
 
 #endif

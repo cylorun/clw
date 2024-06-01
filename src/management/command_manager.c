@@ -1,5 +1,6 @@
-#include "culti.h"
+#include "../culti.h"
 #include "command_manager.h"
+#include "../util.h"
 #include "window_manager.h"
 #include <stdio.h>
 
@@ -34,10 +35,7 @@ void help(const char **args) {
 }
 
 void redetect(const char **args) {
-    InstanceList *list = getInstanceList();
-    getAllOpenInstances(list);
-    setAllTitles(list);
-    resizeAll(list);
+    redetectInstances(getInstanceList());
 }
 
 void titles(const char **args) {

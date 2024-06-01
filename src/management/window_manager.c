@@ -1,4 +1,6 @@
 #include "window_manager.h"
+#include "../util.h"
+#include "../instance.h"
 #include <stdio.h>
 #include <tchar.h>
 
@@ -10,8 +12,14 @@ BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam) {
         strstr(buffer, MC_PATTERN) != NULL) {
         if (instanceList->count < MAX_INSTANCES) {
             instanceList->instances[instanceList->count].hwnd = hwnd;
-            instanceList->instances[instanceList->count].num = instanceList->count + 1;
+
+            char *path = getInstancePath(&instanceList->instances[instanceList->count]);
+            int instNum = getInstanceNumber(getInstanceName(path));
+
+            instanceList->instances[instanceList->count].num = instNum;
+            instanceList->instances[instanceList->count].path = path;
             instanceList->count++;
+
         } else {
             perror("too many instances");
         }
@@ -57,6 +65,13 @@ void setAllTitles(const InstanceList *instanceList) {
 
         setWindowText(instanceList->instances[i].hwnd, newTitle);
     }
+}
+
+void redetectInstances(const InstanceList *list) {
+    getAllOpenInstances(list);
+    setAllTitles(list);
+    resizeAll(list);
+    sortInstances(list);
 }
 
 void resizeAll(const InstanceList *instanceList) {
@@ -115,7 +130,6 @@ void sendKeyStroke(HWND hwnd, WPARAM key) {
     }
 }
 
-void sendCharKey(HWND hwnd, char c) {
-    PostMessage(hwnd, WM_CHAR, (WPARAM) c, 0);
+int isOnProjector() {
+    return strstr(getForegroundText(), "Projector (Scene)") != NULL ? 1 : 0;
 }
-

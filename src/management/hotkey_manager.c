@@ -3,7 +3,9 @@
 #include "hotkey_manager.h"
 #include "window_manager.h"
 #include "reset_manager.h"
-#include "culti.h"
+#include "../culti.h"
+#include "math.h"
+#include "../util.h"
 
 void addHotkey(HotkeyList *list, const char *name, int vKey, HotkeyFunction function) {
     if (list->count < MAX_HOTKEYS) {
@@ -32,20 +34,33 @@ void *hotkeyThread(void *arg) {
     processHotkeys(list);
 }
 
-void run(HotkeyList *list) {
+void runHotkeys(HotkeyList *list) {
     pthread_t id;
     pthread_create(&id, NULL, hotkeyThread, list);
 }
 
 void registerDefaultHotkeys(HotkeyList *list) {
     addHotkey(list, "reset-all", 0x54, &resetAll);
-    run(list);
+    addHotkey(list, "single-reset", 0x45, &resetSingle);
+    runHotkeys(list);
 }
 
 void resetAll() {
-    if (strstr(getForegroundText(), "Projector (Scene)") != NULL) {
+    if (isOnProjector()) {
         resetAllInstances(getInstanceList());
-        printf("reset all \n");
     }
 }
 
+void resetSingle() {
+    if (isOnProjector()){
+        POINT p;
+        GetCursorPos(&p);
+        int i = mousePosToIdx();
+        if (i >= getInstanceList()->count) {
+            printf("Out of bounds instance index");
+            return;
+        }
+
+        singleReset(getInstanceList()->instances[i]);
+    }
+}

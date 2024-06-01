@@ -2,21 +2,11 @@
 #define WINDOW_MANAGER_H
 
 #include <windows.h>
+#include "../instance.h"
 
 #define MC_PATTERN "Minecraft*"
-#define MAX_INSTANCES 100
 #define MAX_WIN_NAME_LEN 256
 
-
-typedef struct {
-    HWND hwnd;
-    int num;
-} MinecraftInstance;
-
-typedef struct {
-    MinecraftInstance instances[MAX_INSTANCES];
-    int count;
-} InstanceList;
 
 BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam);
 
@@ -36,14 +26,16 @@ void setAllTitles(const InstanceList *instanceList);
 
 void resizeAll(const InstanceList *instanceList);
 
+void redetectInstances(const InstanceList *list);
+
 char *getForegroundText();
 
 char *getActiveText();
 
 void sendKeyStroke(HWND hwnd, WPARAM key);
 
-void sendCharKey(HWND hwnd, char c);
-
 HWND getWindowByName(char *name);
+
+int isOnProjector();
 
 #endif

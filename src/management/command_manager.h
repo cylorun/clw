@@ -26,6 +26,7 @@ void executeCommand(const CommandList *list, const char **args);
 void registerDefaultCommands(CommandList *list);
 
 
+
 // Define commands
 void help(const char **args);
 

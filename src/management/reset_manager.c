@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "reset_manager.h"
 #include "window_manager.h"
 
