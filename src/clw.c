@@ -1,8 +1,8 @@
-#include "management/window_manager.h"
-#include "management/command_manager.h"
-#include "management/hotkey_manager.h"
-#include "config.h"
-#include "util.h"
+#include "../include/window_manager.h"
+#include "../include/command_manager.h"
+#include "../include/hotkey_manager.h"
+#include "../include/config.h"
+#include "../include/util.h"
 #include "../lib/cJSON-1.7.18/cJSON.h"
 #include <stdio.h>
 #include <stdlib.h>

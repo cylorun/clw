@@ -1,7 +1,7 @@
-#include "../clw.h"
-#include "command_manager.h"
-#include "../util.h"
-#include "window_manager.h"
+#include "../../include/clw.h"
+#include "../../include/command_manager.h"
+#include "../../include/util.h"
+#include "../../include/window_manager.h"
 #include <stdio.h>
 
 void registerCommand(CommandList *list, const char *name, CommandFunction function, int minArgs, int maxArgs) {

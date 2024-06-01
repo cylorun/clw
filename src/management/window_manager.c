@@ -1,6 +1,6 @@
-#include "window_manager.h"
-#include "../util.h"
-#include "../instance.h"
+#include "../../include/window_manager.h"
+#include "../../include/util.h"
+#include "../../include/instance.h"
 #include <stdio.h>
 #include <tchar.h>
 

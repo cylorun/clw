@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
-#include "instance.h"
-#include "util.h"
-#include "management/window_manager.h"
+#include "../include/instance.h"
+#include "../include/util.h"
+#include "../include/window_manager.h"
 
 int getInstanceNumber(const char *name) {
     int i = 0;
