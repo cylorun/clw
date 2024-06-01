@@ -3,14 +3,15 @@
 
 #include "../lib/cJSON-1.7.18/cJSON.h"
 
+void setDefaultConfig();
+
 void initConfigManager();
 
 int saveJSONFile(const char *filename, cJSON *json);
 
 cJSON *loadJSONFile(const char *filename);
 
-void setConfig(cJSON *config);
-
 cJSON *getConfig();
+
 
 #endif

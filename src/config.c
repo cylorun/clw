@@ -3,6 +3,8 @@
 #include <string.h>
 #include "../lib/cJSON-1.7.18/cJSON.h"
 
+#define CONFIG_PATH "../config.json"
+
 typedef struct {
     cJSON *config;
 } ConfigManager;
@@ -39,9 +41,6 @@ cJSON *loadJSONFile(const char *filename) {
     return json;
 }
 
-void initConfigManager() {
-    manager.config = loadJSONFile("../config.json");
-}
 
 int saveJSONFile(const char *filename, cJSON *json) {
     FILE *file = fopen(filename, "w");
@@ -65,15 +64,28 @@ int saveJSONFile(const char *filename, cJSON *json) {
     return 1;
 }
 
+void setDefaultConfig() {
+    cJSON *nj = cJSON_CreateObject();
+    cJSON_AddStringToObject(nj, "mmc_path", "");
+    cJSON_AddNumberToObject(nj, "rows", 2);
+    cJSON_AddNumberToObject(nj, "cols", 2);
+    saveJSONFile(CONFIG_PATH, nj);
+}
+
+void initConfigManager() {
+    FILE *file = fopen(CONFIG_PATH, "r");
+    if (!file) {
+        setDefaultConfig();
+    }
+    fclose(file);
+    manager.config = loadJSONFile(CONFIG_PATH);
+}
+
 cJSON *getConfig() {
     return manager.config;
 }
 
-void setConfig(cJSON *config) {
-    if (manager.config != NULL) {
-        cJSON_Delete(manager.config);
-    }
-    manager.config = config;
-}
+
+
 
 
