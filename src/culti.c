@@ -1,7 +1,9 @@
 #include "management/window_manager.h"
 #include "management/command_manager.h"
 #include "management/hotkey_manager.h"
+#include "config.h"
 #include "util.h"
+#include "../lib/cJSON-1.7.18/cJSON.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,10 +25,12 @@ InstanceList *getInstanceList() {
 }
 
 int main(int argc, char **argv) {
+    printf("Running Culti %s\n", CULTI_VERSION);
+
     getAllOpenInstances(&instanceList);
     registerDefaultCommands(&commandList);
     registerDefaultHotkeys(&hotkeyList);
-    printf("culti gaming\n");
+    initConfigManager();
 
     while (1) {
         char *buffer = read_line();

@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "culti",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -38,8 +40,15 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "cJSON::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-cJSON-Debug-7e5580afa4043d0493cb.json",
+					"name" : "cJSON",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "culti::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-culti-Debug-61d89f19c71b82661a4d.json",
+					"jsonFile" : "target-culti-Debug-c8d2915ec74b97d31608.json",
 					"name" : "culti",
 					"projectIndex" : 0
 				}

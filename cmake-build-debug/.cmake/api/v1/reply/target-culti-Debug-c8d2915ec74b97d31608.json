@@ -14,8 +14,7 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_libraries",
-			"include_directories"
+			"target_link_libraries"
 		],
 		"files" : 
 		[
@@ -35,19 +34,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 25,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 5,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 6,
+				"line" : 28,
 				"parent" : 0
 			}
 		]
@@ -59,17 +46,6 @@
 			[
 				{
 					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
-				}
-			],
-			"includes" : 
-			[
-				{
-					"backtrace" : 3,
-					"path" : "C:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18"
-				},
-				{
-					"backtrace" : 4,
-					"path" : "C:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include"
 				}
 			],
 			"language" : "C",
@@ -89,8 +65,16 @@
 				6,
 				8,
 				10,
-				12
+				12,
+				14
 			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "cJSON::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "culti::@6890427a1f51a3e7e1df",
@@ -114,6 +98,11 @@
 			{
 				"backtrace" : 2,
 				"fragment" : "-lMsimg32",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "libcJSON.a",
 				"role" : "libraries"
 			},
 			{
@@ -142,7 +131,8 @@
 				6,
 				8,
 				10,
-				12
+				12,
+				14
 			]
 		},
 		{
@@ -155,7 +145,8 @@
 				7,
 				9,
 				11,
-				13
+				13,
+				15
 			]
 		}
 	],
@@ -236,6 +227,17 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/instance.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/config.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/config.h",
 			"sourceGroupIndex" : 1
 		}
 	],

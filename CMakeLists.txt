@@ -2,11 +2,12 @@ cmake_minimum_required(VERSION 3.27)
 project(culti C)
 
 set(CMAKE_C_STANDARD 11)
-include_directories(lib/cJSON-1.7.18)
-include_directories(lib/Nuklear-4.12.0/include)
+
+add_library(cJSON STATIC lib/cJSON-1.7.18/cJSON.c)
 
 
-add_executable(culti src/culti.c
+add_executable(culti
+        src/culti.c
         src/management/window_manager.h
         src/management/window_manager.c
         src/management/command_manager.c
@@ -20,6 +21,8 @@ add_executable(culti src/culti.c
         src/util.h
         src/instance.c
         src/instance.h
+        src/config.c
+        src/config.h
 )
 
-target_link_libraries(culti gdi32 Msimg32)
+target_link_libraries(culti gdi32 Msimg32 cJSON)

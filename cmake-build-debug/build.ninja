@@ -41,60 +41,90 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/alfgr/Desktop/projects/CnCPP/culti/cmake-build-debug/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target cJSON
+
+
+#############################################
+# Order-only phony target for cJSON
+
+build cmake_object_order_depends_target_cJSON: phony || CMakeFiles/cJSON.dir
+
+build CMakeFiles/cJSON.dir/lib/cJSON-1.7.18/cJSON.c.obj: C_COMPILER__cJSON_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18/cJSON.c || cmake_object_order_depends_target_cJSON
+  DEP_FILE = CMakeFiles\cJSON.dir\lib\cJSON-1.7.18\cJSON.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\cJSON.dir
+  OBJECT_FILE_DIR = CMakeFiles\cJSON.dir\lib\cJSON-1.7.18
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target cJSON
+
+
+#############################################
+# Link the static library libcJSON.a
+
+build libcJSON.a: C_STATIC_LIBRARY_LINKER__cJSON_Debug CMakeFiles/cJSON.dir/lib/cJSON-1.7.18/cJSON.c.obj
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = CMakeFiles\cJSON.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = libcJSON.a
+  TARGET_PDB = cJSON.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target culti
 
 
 #############################################
 # Order-only phony target for culti
 
-build cmake_object_order_depends_target_culti: phony || CMakeFiles/culti.dir
+build cmake_object_order_depends_target_culti: phony || cmake_object_order_depends_target_cJSON
 
 build CMakeFiles/culti.dir/src/culti.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/culti.c || cmake_object_order_depends_target_culti
   DEP_FILE = CMakeFiles\culti.dir\src\culti.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18 -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include
   OBJECT_DIR = CMakeFiles\culti.dir
   OBJECT_FILE_DIR = CMakeFiles\culti.dir\src
 
 build CMakeFiles/culti.dir/src/management/window_manager.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/management/window_manager.c || cmake_object_order_depends_target_culti
   DEP_FILE = CMakeFiles\culti.dir\src\management\window_manager.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18 -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include
   OBJECT_DIR = CMakeFiles\culti.dir
   OBJECT_FILE_DIR = CMakeFiles\culti.dir\src\management
 
 build CMakeFiles/culti.dir/src/management/command_manager.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/management/command_manager.c || cmake_object_order_depends_target_culti
   DEP_FILE = CMakeFiles\culti.dir\src\management\command_manager.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18 -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include
   OBJECT_DIR = CMakeFiles\culti.dir
   OBJECT_FILE_DIR = CMakeFiles\culti.dir\src\management
 
 build CMakeFiles/culti.dir/src/management/hotkey_manager.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/management/hotkey_manager.c || cmake_object_order_depends_target_culti
   DEP_FILE = CMakeFiles\culti.dir\src\management\hotkey_manager.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18 -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include
   OBJECT_DIR = CMakeFiles\culti.dir
   OBJECT_FILE_DIR = CMakeFiles\culti.dir\src\management
 
 build CMakeFiles/culti.dir/src/management/reset_manager.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/management/reset_manager.c || cmake_object_order_depends_target_culti
   DEP_FILE = CMakeFiles\culti.dir\src\management\reset_manager.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18 -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include
   OBJECT_DIR = CMakeFiles\culti.dir
   OBJECT_FILE_DIR = CMakeFiles\culti.dir\src\management
 
 build CMakeFiles/culti.dir/src/util.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/util.c || cmake_object_order_depends_target_culti
   DEP_FILE = CMakeFiles\culti.dir\src\util.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18 -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include
   OBJECT_DIR = CMakeFiles\culti.dir
   OBJECT_FILE_DIR = CMakeFiles\culti.dir\src
 
 build CMakeFiles/culti.dir/src/instance.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/instance.c || cmake_object_order_depends_target_culti
   DEP_FILE = CMakeFiles\culti.dir\src\instance.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/cJSON-1.7.18 -IC:/Users/alfgr/Desktop/projects/CnCPP/culti/lib/Nuklear-4.12.0/include
+  OBJECT_DIR = CMakeFiles\culti.dir
+  OBJECT_FILE_DIR = CMakeFiles\culti.dir\src
+
+build CMakeFiles/culti.dir/src/config.c.obj: C_COMPILER__culti_unscanned_Debug C$:/Users/alfgr/Desktop/projects/CnCPP/culti/src/config.c || cmake_object_order_depends_target_culti
+  DEP_FILE = CMakeFiles\culti.dir\src\config.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\culti.dir
   OBJECT_FILE_DIR = CMakeFiles\culti.dir\src
 
@@ -106,9 +136,9 @@ build CMakeFiles/culti.dir/src/instance.c.obj: C_COMPILER__culti_unscanned_Debug
 #############################################
 # Link the executable culti.exe
 
-build culti.exe: C_EXECUTABLE_LINKER__culti_Debug CMakeFiles/culti.dir/src/culti.c.obj CMakeFiles/culti.dir/src/management/window_manager.c.obj CMakeFiles/culti.dir/src/management/command_manager.c.obj CMakeFiles/culti.dir/src/management/hotkey_manager.c.obj CMakeFiles/culti.dir/src/management/reset_manager.c.obj CMakeFiles/culti.dir/src/util.c.obj CMakeFiles/culti.dir/src/instance.c.obj
+build culti.exe: C_EXECUTABLE_LINKER__culti_Debug CMakeFiles/culti.dir/src/culti.c.obj CMakeFiles/culti.dir/src/management/window_manager.c.obj CMakeFiles/culti.dir/src/management/command_manager.c.obj CMakeFiles/culti.dir/src/management/hotkey_manager.c.obj CMakeFiles/culti.dir/src/management/reset_manager.c.obj CMakeFiles/culti.dir/src/util.c.obj CMakeFiles/culti.dir/src/instance.c.obj CMakeFiles/culti.dir/src/config.c.obj | libcJSON.a || libcJSON.a
   FLAGS = -g
-  LINK_LIBRARIES = -lgdi32  -lMsimg32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -lgdi32  -lMsimg32  libcJSON.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\culti.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -142,6 +172,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build cJSON: phony libcJSON.a
+
 build culti: phony culti.exe
 
 # =============================================================================
@@ -152,7 +184,7 @@ build culti: phony culti.exe
 #############################################
 # Folder: C:/Users/alfgr/Desktop/projects/CnCPP/culti/cmake-build-debug
 
-build all: phony culti.exe
+build all: phony libcJSON.a culti.exe
 
 # =============================================================================
 # Built-in targets
