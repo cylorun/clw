@@ -60,7 +60,23 @@ char *getInstancePath(MinecraftInstance *instance) {
     return res;
 }
 
-int launchInstance(const char *name) {
+int launchMultiMC() {
+    cJSON *config = getConfig();
+    cJSON *mmc_path_item = cJSON_GetObjectItem(config, "mmc_path");
+    char *mmc_path;
+
+    if (mmc_path_item != NULL && cJSON_IsString(mmc_path_item)) {
+        mmc_path = mmc_path_item->valuestring;
+    } else {
+        printf("Error: mmc_path is not a valid string or doesn't exist.\n");
+        return 0;
+    }
+    system(mmc_path);
+    return 0;
+}
+
+
+int launchInstance(const char *inst_name) {
     cJSON *config = getConfig();
     cJSON *mmc_path_item = cJSON_GetObjectItem(config, "mmc_path");
     char *mmc_path;
@@ -72,13 +88,13 @@ int launchInstance(const char *name) {
         return 0;
     }
 
-
-    char command[strlen(name) + strlen(mmc_path) + 20];
-    sprintf(command, "%s --launch %s", mmc_path, name);
+    char command[strlen(inst_name) + strlen(mmc_path) + 50];
+    sprintf(command, "\"%s\" --launch %s", mmc_path, inst_name);
     printf("Running: %s\n", command);
 
-    if (system(command) == 1){
-        printf("Invalid multi mc path\n");
+    int result = system(command);
+    if (result != 0) {
+        printf("Error: MultiMC command failed with code %d\n", result);
         return 0;
     }
 

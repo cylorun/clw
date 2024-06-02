@@ -65,7 +65,12 @@ int saveJSONFile(const char *filename, cJSON *json) {
     return 1;
 }
 void addInstanceList(InstanceList *list) {
-   cJSON *arr = cJSON_AddArrayToObject(manager.config,"instances");
+    cJSON *j = cJSON_GetObjectItem(manager.config,"instances");
+    if (j != NULL && cJSON_IsArray(j)) {
+        cJSON_Delete(j);
+    }
+
+    cJSON *arr = cJSON_AddArrayToObject(manager.config,"instances");
     for (int i = 0; i < list->count; ++i) {
         cJSON_AddItemToArray(arr, cJSON_CreateString(list->instances[i].path));
     }

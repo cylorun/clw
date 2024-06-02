@@ -18,12 +18,13 @@ typedef struct {
 
 int getInstanceNumber(const char* name);
 
-int launchInstance(const char* name);
+int launchMultiMC();
+
+int launchInstance(const char* inst_name);
 
 int launchAllInstances();
 
 int closeInstance(const char* name);
-
 
 char *getInstanceName(char* path);
 
