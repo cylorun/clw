@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../lib/cJSON-1.7.18/cJSON.h"
+#include "../include/instance.h"
 
 #define CONFIG_PATH "../config.json"
 
@@ -62,6 +63,13 @@ int saveJSONFile(const char *filename, cJSON *json) {
     fclose(file);
 
     return 1;
+}
+void addInstanceList(InstanceList *list) {
+   cJSON *arr = cJSON_AddArrayToObject(manager.config,"instances");
+    for (int i = 0; i < list->count; ++i) {
+        cJSON_AddItemToArray(arr, cJSON_CreateString(list->instances[i].path));
+    }
+    saveJSONFile(CONFIG_PATH, manager.config);
 }
 
 void setDefaultConfig() {

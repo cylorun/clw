@@ -3,6 +3,7 @@
 #include "../include/instance.h"
 #include "../include/util.h"
 #include "../include/window_manager.h"
+#include "../include/config.h"
 
 int getInstanceNumber(const char *name) {
     int i = 0;
@@ -60,3 +61,17 @@ char *getInstancePath(MinecraftInstance *instance) {
     return res;
 }
 
+int launchInstance(const char *name) {
+    cJSON *config = getConfig();
+    char *mmc_path = (char *) cJSON_GetObjectItem(config, "mmc_path");
+    if (mmc_path == NULL) {
+        printf("No mmc_path defined");
+        return 0;
+    }
+
+    char command[strlen(name) + strlen(mmc_path) + 20];
+    sprintf(command, "%s --launch %s", mmc_path, name);
+    system(command);
+
+    return 1;
+}

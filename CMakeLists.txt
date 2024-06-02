@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.27)
-project(culti C)
+project(clw C)
 
 set(CMAKE_C_STANDARD 11)
 
 add_library(cJSON STATIC lib/cJSON-1.7.18/cJSON.c)
 
 
-add_executable(culti
+add_executable(clw
         src/clw.c
         include/window_manager.h
         src/management/window_manager.c
@@ -25,4 +25,4 @@ add_executable(culti
         include/config.h
 )
 
-target_link_libraries(culti gdi32 Msimg32 cJSON)
+target_link_libraries(clw gdi32 Msimg32 cJSON)

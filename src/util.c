@@ -57,6 +57,7 @@ char **split(const char *line, const char* delim) {
             printf("allocation failure\n");
             exit(EXIT_FAILURE);
         }
+
         strncpy(tokens[pos], line, token - line);
         tokens[pos][token - line] = '\0';
         pos++;
@@ -109,6 +110,7 @@ char *replace(const char *str, const char *old, const char *new) {
             strcpy(write_pos, start);
             break;
         }
+
         int len = p - start;
         strncpy(write_pos, start, len);
         write_pos += len;
@@ -140,6 +142,7 @@ char *run_cmd(const char* command) {
     }
     return result;
 }
+
 int contains(char** list, char* sub) {
     int i = 0;
     char* curr = list[i];

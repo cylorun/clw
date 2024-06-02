@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define TOK_DELIMS " \t\r\n\a"
 #define CLW_VERSION "v0.0.0"
 
 InstanceList instanceList = {0};
@@ -15,7 +14,7 @@ CommandList commandList = {0};
 HotkeyList hotkeyList = {0};
 
 int runCommand(const char *line) {
-    char **args = split(line, TOK_DELIMS);
+    char **args = split(line, " ");
     executeCommand(&commandList, (const char **) args);
 }
 

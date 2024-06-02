@@ -18,6 +18,11 @@ typedef struct {
 
 int getInstanceNumber(const char* name);
 
+int launchInstance(const char* name);
+
+int closeInstance(const char* name);
+
+
 char *getInstanceName(char* path);
 
 char* getInstancePath(MinecraftInstance *instance);

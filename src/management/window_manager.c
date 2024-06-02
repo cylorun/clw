@@ -1,6 +1,7 @@
 #include "../../include/window_manager.h"
 #include "../../include/util.h"
 #include "../../include/instance.h"
+#include "../../include/config.h"
 #include <stdio.h>
 #include <tchar.h>
 
@@ -72,6 +73,7 @@ void redetectInstances(const InstanceList *list) {
     setAllTitles(list);
     resizeAll(list);
     sortInstances(list);
+    addInstanceList(list);
 }
 
 void resizeAll(const InstanceList *instanceList) {
