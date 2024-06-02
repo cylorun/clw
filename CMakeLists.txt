@@ -4,8 +4,6 @@ project(clw C)
 set(CMAKE_C_STANDARD 11)
 
 add_library(cJSON STATIC lib/cJSON-1.7.18/cJSON.c)
-
-
 add_executable(clw
         src/clw.c
         include/window_manager.h

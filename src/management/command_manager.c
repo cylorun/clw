@@ -74,16 +74,18 @@ void config(const char **args) {
 
 void close(const char **args) {
     InstanceList *list = getInstanceList();
-    int num = atoi(args[1]);
+    int num = getInstanceNumber(args[0]);
+
     char *path = list->instances[num - 1].path;
+    char *name = getInstanceName(path);
 
 
 }
 
 void launch(const char **args) {
-    InstanceList *list = getInstanceList();
-    int num = atoi(args[1]);
-    char *path = list->instances[num - 1].path;
-    char *name = getInstanceName(path);
-    launchInstance(name);
+    if (strcmp("all", args[0]) == 0) {
+        launchAllInstances();
+    } else {
+        launchInstance(args[0]);
+    }
 }

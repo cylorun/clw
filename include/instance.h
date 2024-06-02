@@ -20,6 +20,8 @@ int getInstanceNumber(const char* name);
 
 int launchInstance(const char* name);
 
+int launchAllInstances();
+
 int closeInstance(const char* name);
 
 

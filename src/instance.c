@@ -52,8 +52,7 @@ char *getInstancePath(MinecraftInstance *instance) {
     char *wmicout = run_cmd(command);
 
 
-    char *s = replace(split(split(wmicout, ".path=")[1], " ")[0], "natives",
-                      ".minecraft"); // top 10 most safe lines of code
+    char *s = replace(split(split(wmicout, ".path=")[1], " ")[0], "natives", ""); // top 10 most safe lines of code
     if (s) {
         res = s;
     }
@@ -63,15 +62,46 @@ char *getInstancePath(MinecraftInstance *instance) {
 
 int launchInstance(const char *name) {
     cJSON *config = getConfig();
-    char *mmc_path = (char *) cJSON_GetObjectItem(config, "mmc_path");
-    if (mmc_path == NULL) {
-        printf("No mmc_path defined");
+    cJSON *mmc_path_item = cJSON_GetObjectItem(config, "mmc_path");
+    char *mmc_path;
+
+    if (mmc_path_item != NULL && cJSON_IsString(mmc_path_item)) {
+        mmc_path = mmc_path_item->valuestring;
+    } else {
+        printf("Error: mmc_path is not a valid string or doesn't exist.\n");
         return 0;
     }
 
+
     char command[strlen(name) + strlen(mmc_path) + 20];
     sprintf(command, "%s --launch %s", mmc_path, name);
-    system(command);
+    printf("Running: %s\n", command);
+
+    if (system(command) == 1){
+        printf("Invalid multi mc path\n");
+        return 0;
+    }
 
     return 1;
+}
+
+int launchAllInstances() {
+    cJSON *config = getConfig();
+    cJSON *instances = cJSON_GetObjectItem(config, "instances");
+
+    if (instances == NULL || !cJSON_IsArray(instances)) {
+        printf("Error: No saved instances detected.\n");
+        cJSON_Delete(config);
+        return 0;
+    }
+
+    int size = cJSON_GetArraySize(instances);
+    for (int i = 0; i < size; ++i) {
+        cJSON *curr = cJSON_GetArrayItem(instances, i);
+        if (cJSON_IsString(curr)) {
+            char* name = getInstanceName(curr->valuestring);
+            launchInstance(name);
+        }
+    }
+
 }

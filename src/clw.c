@@ -24,10 +24,10 @@ InstanceList *getInstanceList() {
 
 int main(int argc, char **argv) {
     printf("Running Culti %s\n", CLW_VERSION);
+    initConfigManager();
 
     registerDefaultCommands(&commandList);
     registerDefaultHotkeys(&hotkeyList);
-    initConfigManager();
 
     while (1) {
         char *buffer = read_line();
