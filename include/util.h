@@ -1,7 +1,7 @@
 #ifndef CULTI_UTIL_H
 #define CULTI_UTIL_H
 
-#include "window_manager.h"
+#include "management/window_manager.h"
 
 char **split(const char *line, const char *delim);
 

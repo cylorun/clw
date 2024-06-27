@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include "../include/util.h"
-#include "../include/window_manager.h"
+#include "include/util.h"
+#include "include/management/window_manager.h"
 
 #define TOK_BUF 512
 #define LINE_BUF 512

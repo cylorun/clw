@@ -2,13 +2,11 @@
 #define WINDOW_MANAGER_H
 
 #include <windows.h>
-#include "instance.h"
+#include "../instance.h"
 
 #define MC_PATTERN "Minecraft*"
 #define MAX_WIN_NAME_LEN 256
 
-
-BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam);
 
 DWORD getPID(HWND hwnd);
 

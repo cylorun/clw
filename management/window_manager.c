@@ -1,11 +1,11 @@
-#include "../../include/window_manager.h"
-#include "../../include/util.h"
-#include "../../include/instance.h"
-#include "../../include/config.h"
+#include "../include/management/window_manager.h"
+#include "../include/util.h"
+#include "../include/instance.h"
+#include "../include/config.h"
 #include <stdio.h>
 #include <tchar.h>
 
-BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam) {
+static BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam) {
     char buffer[MAX_WIN_NAME_LEN];
     InstanceList *instanceList = (InstanceList *) lParam;
 
