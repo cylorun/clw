@@ -3,7 +3,8 @@ project(clw C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_library(cJSON STATIC lib/cJSON-1.7.18/cJSON.c)
+add_library(cJSON STATIC lib/cJSON-1.7.18/cJSON.c
+        include/logging.h)
 add_executable(clw
         src/clw.c
         include/management/window_manager.h
@@ -21,6 +22,7 @@ add_executable(clw
         include/instance.h
         src/config.c
         include/config.h
+        src/logging.c
 )
 
 target_link_libraries(clw gdi32 Msimg32 cJSON)

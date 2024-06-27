@@ -3,7 +3,7 @@
 #include "../include/management/hotkey_manager.h"
 #include "../include/config.h"
 #include "../include/util.h"
-#include "../lib/cJSON-1.7.18/cJSON.h"
+#include "../include/logging.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -28,6 +28,7 @@ InstanceList *getInstanceList() {
 
 int main(int argc, char **argv) {
     printf("Running Culti %s\n", CLW_VERSION);
+    clwLog(LEVEL_INFO, "culti gaming");
     initConfigManager();
 
     registerDefaultCommands(&commandList);

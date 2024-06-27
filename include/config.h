@@ -1,8 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include "lib/cJSON-1.7.18/cJSON.h"
-#include "include/instance.h"
+#include "../lib/cJSON-1.7.18/cJSON.h"
+#include "../include/instance.h"
 
 #define CONFIG_PATH "../config.json"
 
