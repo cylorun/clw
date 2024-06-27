@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lib/cJSON-1.7.18/cJSON.h"
-#include "include/instance.h"
+#include "../lib/cJSON-1.7.18/cJSON.h"
+#include "../include/instance.h"
 
 #define CONFIG_PATH "../config.json"
 

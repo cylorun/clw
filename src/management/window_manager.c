@@ -1,7 +1,7 @@
-#include "../include/management/window_manager.h"
-#include "../include/util.h"
-#include "../include/instance.h"
-#include "../include/config.h"
+#include "../../include/management/window_manager.h"
+#include "../../include/util.h"
+#include "../../include/instance.h"
+#include "../../include/config.h"
 #include <stdio.h>
 #include <tchar.h>
 

@@ -1,5 +1,5 @@
-#include "../include/management/reset_manager.h"
-#include "../include/management/window_manager.h"
+#include "../../include/management/reset_manager.h"
+#include "../../include/management/window_manager.h"
 
 
 void resetAllInstances(InstanceList *list) {

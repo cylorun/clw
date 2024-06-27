@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <pthread.h>
-#include "../include/management/hotkey_manager.h"
-#include "../include/management/window_manager.h"
-#include "../include/management/reset_manager.h"
-#include "../include/clw.h"
+#include "../../include/management/hotkey_manager.h"
+#include "../../include/management/window_manager.h"
+#include "../../include/management/reset_manager.h"
+#include "../../include/clw.h"
 #include "math.h"
-#include "../include/util.h"
+#include "../../include/util.h"
 
 void addHotkey(HotkeyList *list, const char *name, int vKey, HotkeyFunction function) {
     if (list->count < MAX_HOTKEYS) {
