@@ -12,7 +12,6 @@ typedef struct {
 
 static ConfigManager manager;
 
-
 cJSON *loadJSONFile(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
@@ -42,7 +41,6 @@ cJSON *loadJSONFile(const char *filename) {
     return json;
 }
 
-
 int saveJSONFile(const char *filename, cJSON *json) {
     FILE *file = fopen(filename, "w");
     if (file == NULL) {
@@ -64,41 +62,74 @@ int saveJSONFile(const char *filename, cJSON *json) {
 
     return 1;
 }
+
 void addInstanceList(InstanceList *list) {
-    cJSON *j = cJSON_GetObjectItem(manager.config,"instances");
-    if (j != NULL && cJSON_IsArray(j)) {
-        cJSON_Delete(j);
+    cJSON *instances = cJSON_GetObjectItem(manager.config, "instances");
+    if (instances != NULL && cJSON_IsArray(instances)) {
+        cJSON_Delete(instances);
     }
 
-    cJSON *arr = cJSON_AddArrayToObject(manager.config,"instances");
+    instances = cJSON_AddArrayToObject(manager.config, "instances");
     for (int i = 0; i < list->count; ++i) {
-        cJSON_AddItemToArray(arr, cJSON_CreateString(list->instances[i].path));
+        cJSON_AddItemToArray(instances, cJSON_CreateString(list->instances[i].path));
     }
     saveJSONFile(CONFIG_PATH, manager.config);
 }
 
 void setDefaultConfig() {
-    cJSON *nj = cJSON_CreateObject();
-    cJSON_AddStringToObject(nj, "mmc_path", "");
-    cJSON_AddNumberToObject(nj, "rows", 2);
-    cJSON_AddNumberToObject(nj, "cols", 2);
-    saveJSONFile(CONFIG_PATH, nj);
+    cJSON *defaultConfig = cJSON_CreateObject();
+    cJSON_AddStringToObject(defaultConfig, "mmc_path", "");
+    cJSON_AddNumberToObject(defaultConfig, "rows", 2);
+    cJSON_AddNumberToObject(defaultConfig, "cols", 2);
+    saveJSONFile(CONFIG_PATH, defaultConfig);
+    cJSON_Delete(defaultConfig);
 }
 
 void initConfigManager() {
-    FILE *file = fopen(CONFIG_PATH, "r");
-    if (!file) {
-        setDefaultConfig();
-    }
-    fclose(file);
     manager.config = loadJSONFile(CONFIG_PATH);
+    if (!manager.config) {
+        setDefaultConfig();
+        manager.config = loadJSONFile(CONFIG_PATH);
+    }
+}
+
+void cleanupConfigManager() {
+    if (manager.config) {
+        cJSON_Delete(manager.config);
+        manager.config = NULL;
+    }
 }
 
 cJSON *getConfig() {
     return manager.config;
 }
 
+const char* getConfigString(const char *key) {
+    cJSON *item = cJSON_GetObjectItem(manager.config, key);
+    return item ? cJSON_GetStringValue(item) : NULL;
+}
 
+int getConfigInt(const char *key) {
+    cJSON *item = cJSON_GetObjectItem(manager.config, key);
+    return item ? item->valueint : 0;
+}
 
+void setConfigString(const char *key, const char *value) {
+    cJSON *item = cJSON_GetObjectItem(manager.config, key);
+    if (item) {
+        cJSON_SetValuestring(item, value);
+    } else {
+        cJSON_AddStringToObject(manager.config, key, value);
+    }
+    saveJSONFile(CONFIG_PATH, manager.config);
+}
 
-
+void setConfigInt(const char *key, int value) {
+    cJSON *item = cJSON_GetObjectItem(manager.config, key);
+    if (item) {
+        cJSON_SetNumberValue(item, value);
+    } else {
+        cJSON_AddNumberToObject(manager.config, key, value);
+    }
+    saveJSONFile(CONFIG_PATH, manager.config);
+}

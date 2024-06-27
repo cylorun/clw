@@ -13,7 +13,11 @@ InstanceList instanceList = {0};
 CommandList commandList = {0};
 HotkeyList hotkeyList = {0};
 
-int runCommand(const char *line) {
+static void tick() {
+
+}
+
+static int runCommand(const char *line) {
     char **args = split(line, " ");
     executeCommand(&commandList, (const char **) args);
 }
