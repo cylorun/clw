@@ -6,6 +6,7 @@
 #include "../../include/clw.h"
 #include "math.h"
 #include "../../include/util.h"
+#include "../../include/logging.h"
 
 void addHotkey(HotkeyList *list, const char *name, int vKey, HotkeyFunction function) {
     if (list->count < MAX_HOTKEYS) {
@@ -57,7 +58,7 @@ void resetSingle() {
         GetCursorPos(&p);
         int i = mousePosToIdx();
         if (i >= getInstanceList()->count) {
-            printf("Out of bounds instance index");
+            clwLog(LEVEL_ERROR,"Out of bounds instance index");
             return;
         }
 

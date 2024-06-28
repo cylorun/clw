@@ -19,5 +19,7 @@ void sortInstances(InstanceList *list);
 
 int mousePosToIdx();
 
+void handleAllocationFailure();
+
 
 #endif

@@ -4,6 +4,7 @@
 #include "../include/util.h"
 #include "../include/management/window_manager.h"
 #include "../include/config.h"
+#include "../include/logging.h"
 
 int getInstanceNumber(const char *name) {
     int i = 0;
@@ -11,8 +12,8 @@ int getInstanceNumber(const char *name) {
     char c = name[i];
     char *nums = malloc(sizeof(char) * 10);
     if (nums == NULL) {
-        perror("allocation failure\n");
-        exit(EXIT_FAILURE);
+        handleAllocationFailure();
+        return -1;
     }
 
     while (c != '\0') {
@@ -40,7 +41,7 @@ char *getInstanceName(char *path) {
 
 char *getInstancePath(MinecraftInstance *instance) {
     if (instance == NULL) {
-        printf("Invalid instance\n");
+        clwLog(LEVEL_ERROR,"Invalid instance");
         return NULL;
     }
     int pid = getPID(instance->hwnd);
@@ -68,7 +69,7 @@ int launchMultiMC() {
     if (mmc_path_item != NULL && cJSON_IsString(mmc_path_item)) {
         mmc_path = mmc_path_item->valuestring;
     } else {
-        printf("Error: mmc_path is not a valid string or doesn't exist.\n");
+        clwLog(LEVEL_WARN, "Error: mmc_path is not a valid string or doesn't exist");
         return 0;
     }
     system(mmc_path);
@@ -84,17 +85,17 @@ int launchInstance(const char *inst_name) {
     if (mmc_path_item != NULL && cJSON_IsString(mmc_path_item)) {
         mmc_path = mmc_path_item->valuestring;
     } else {
-        printf("Error: mmc_path is not a valid string or doesn't exist.\n");
+        clwLog(LEVEL_WARN, "Error: mmc_path is not a valid string or doesn't exist");
         return 0;
     }
 
     char command[strlen(inst_name) + strlen(mmc_path) + 50];
     sprintf(command, "\"%s\" --launch %s", mmc_path, inst_name);
-    printf("Running: %s\n", command);
+    clwLog(LEVEL_DEBUG,"Running: %s", command);
 
     int result = system(command);
     if (result != 0) {
-        printf("Error: MultiMC command failed with code %d\n", result);
+        clwLog(LEVEL_ERROR,"Error: MultiMC command failed with code %d\n", result);
         return 0;
     }
 
@@ -106,7 +107,7 @@ int launchAllInstances() {
     cJSON *instances = cJSON_GetObjectItem(config, "instances");
 
     if (instances == NULL || !cJSON_IsArray(instances)) {
-        printf("Error: No saved instances detected.\n");
+        clwLog(LEVEL_WARN, "Error: No saved instances detected.\n");
         cJSON_Delete(config);
         return 0;
     }

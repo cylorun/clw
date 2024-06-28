@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "../include/util.h"
 #include "../include/management/window_manager.h"
+#include "../include/logging.h"
 
 #define TOK_BUF 512
 #define LINE_BUF 512
@@ -15,8 +16,8 @@ char *read_line(void) {
     char *buffer = malloc(sizeof(char) * buff_size);
 
     if (!buffer) {
-        printf("allocation failure\n");
-        exit(EXIT_FAILURE);
+       handleAllocationFailure();
+       return NULL;
     }
 
     while (1) {
@@ -32,8 +33,8 @@ char *read_line(void) {
             buff_size += buff_size;
             buffer = realloc(buffer, sizeof(char) * buff_size);
             if (!buffer) {
-                printf("allocation failure\n");
-                exit(EXIT_FAILURE);
+                handleAllocationFailure();
+                return NULL;
             }
         }
     }
@@ -46,16 +47,16 @@ char **split(const char *line, const char* delim) {
     char *token;
 
     if (!tokens) {
-        printf("allocation failure\n");
-        exit(EXIT_FAILURE);
+        handleAllocationFailure();
+        return NULL;
     }
 
     token = strstr(line, delim);
     while (token != NULL) {
         tokens[pos] = malloc(token - line + 1);
         if (!tokens[pos]) {
-            printf("allocation failure\n");
-            exit(EXIT_FAILURE);
+            handleAllocationFailure();
+            return NULL;
         }
 
         strncpy(tokens[pos], line, token - line);
@@ -65,8 +66,8 @@ char **split(const char *line, const char* delim) {
             buff_size += buff_size;
             tokens = realloc(tokens, sizeof(char *) * buff_size);
             if (!tokens) {
-                printf("allocation failure\n");
-                exit(EXIT_FAILURE);
+                handleAllocationFailure();
+                return NULL;
             }
         }
         line = token + strlen(delim);
@@ -75,8 +76,8 @@ char **split(const char *line, const char* delim) {
 
     tokens[pos] = malloc(strlen(line) + 1);
     if (!tokens[pos]) {
-        printf("allocation failure\n");
-        exit(EXIT_FAILURE);
+        handleAllocationFailure();
+        return NULL;
     }
     strcpy(tokens[pos], line);
     pos++;
@@ -98,8 +99,8 @@ char *replace(const char *str, const char *old, const char *new) {
     int final_len = strlen(str) + count * (new_len - old_len) + 1;
     char *result = (char *)malloc(final_len * sizeof(char));
     if (result == NULL) {
-        perror("Memory allocation failed\n");
-        exit(EXIT_FAILURE);
+        handleAllocationFailure();
+        return NULL;
     }
 
     const char *start = str;
@@ -125,7 +126,7 @@ char *replace(const char *str, const char *old, const char *new) {
 char *run_cmd(const char* command) {
     FILE *fp = _popen(command, "r");
     if (fp == NULL) {
-        printf("failed to run command\n");
+        clwLog(LEVEL_ERROR, "Failed to run command: %s", command);
         return NULL;
     }
 
@@ -184,3 +185,7 @@ int mousePosToIdx() {
     return ri * cols + ci;
 }
 
+void handleAllocationFailure() {
+    clwLog(LEVEL_ERROR, "Memory allocation failure");
+    exit(EXIT_FAILURE);
+}

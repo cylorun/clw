@@ -27,20 +27,4 @@ void executeCommand(const CommandList *list, const char **args);
 
 void registerDefaultCommands(CommandList *list);
 
-
-
-// Define commands
-void help(const char **args);
-
-void redetect(const char **args);
-
-void titles(const char **args);
-
-void config(const char **args);
-
-void close(const char **args);
-
-void launch(const char **args);
-
-
 #endif

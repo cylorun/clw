@@ -3,6 +3,8 @@
 #include <string.h>
 #include "../lib/cJSON-1.7.18/cJSON.h"
 #include "../include/instance.h"
+#include "../include/logging.h"
+#include "../include/util.h"
 
 #define CONFIG_PATH "../config.json"
 
@@ -15,7 +17,7 @@ static ConfigManager manager;
 cJSON *loadJSONFile(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        fprintf(stderr, "Error opening file: %s\n", filename);
+        clwLog(LEVEL_ERROR, "Error opening file: %s\n", filename);
         return NULL;
     }
 
@@ -26,7 +28,7 @@ cJSON *loadJSONFile(const char *filename) {
     char *data = (char *) malloc(length + 1);
     if (data == NULL) {
         fclose(file);
-        fprintf(stderr, "Memory allocation error\n");
+        handleAllocationFailure();
         return NULL;
     }
 
@@ -44,14 +46,14 @@ cJSON *loadJSONFile(const char *filename) {
 int saveJSONFile(const char *filename, cJSON *json) {
     FILE *file = fopen(filename, "w");
     if (file == NULL) {
-        fprintf(stderr, "Error opening file for writing: %s\n", filename);
+        clwLog(LEVEL_ERROR, "Error opening file for writing: %s\n", filename);
         return 0;
     }
 
     char *data = cJSON_Print(json);
     if (data == NULL) {
         fclose(file);
-        fprintf(stderr, "Error converting JSON to string\n");
+        clwLog(LEVEL_ERROR, "Error converting JSON to string");
         return 0;
     }
 
@@ -104,14 +106,14 @@ cJSON *getConfig() {
     return manager.config;
 }
 
-const char* getConfigString(const char *key) {
+const char *getConfigString(const char *key) {
     cJSON *item = cJSON_GetObjectItem(manager.config, key);
     return item ? cJSON_GetStringValue(item) : NULL;
 }
 
 int getConfigInt(const char *key) {
     cJSON *item = cJSON_GetObjectItem(manager.config, key);
-    return item ? item->valueint : 0;
+    return item ? item->valueint : -1;
 }
 
 void setConfigString(const char *key, const char *value) {

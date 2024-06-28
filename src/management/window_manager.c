@@ -2,6 +2,7 @@
 #include "../../include/util.h"
 #include "../../include/instance.h"
 #include "../../include/config.h"
+#include "../../include/logging.h"
 #include <stdio.h>
 #include <tchar.h>
 
@@ -22,7 +23,7 @@ static BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam) {
             instanceList->count++;
 
         } else {
-            perror("too many instances");
+            clwLog(LEVEL_ERROR,"too many instances");
         }
     }
     return TRUE;
@@ -88,8 +89,8 @@ char *getForegroundText() {
     HWND hwnd = GetForegroundWindow();
     char *buffer = malloc(MAX_WIN_NAME_LEN);
     if (buffer == NULL) {
-        perror("Failed to allocate memory");
-        exit(EXIT_FAILURE);
+        handleAllocationFailure();
+        return NULL;
     }
     GetWindowText(hwnd, buffer, MAX_WIN_NAME_LEN);
     buffer[MAX_WIN_NAME_LEN - 1] = '\0';
@@ -100,9 +101,10 @@ char *getActiveText() {
     HWND hwnd = GetActiveWindow();
     char *buffer = malloc(MAX_WIN_NAME_LEN);
     if (buffer == NULL) {
-        perror("Failed to allocate memory");
-        exit(EXIT_FAILURE);
+        handleAllocationFailure();
+        return NULL;
     }
+
     GetWindowText(hwnd, buffer, MAX_WIN_NAME_LEN);
     buffer[MAX_WIN_NAME_LEN - 1] = '\0';
     return buffer;
@@ -114,7 +116,7 @@ HWND getWindowByName(char *name) {
 
 void sendKeyStroke(HWND hwnd, WPARAM key) {
     if (hwnd == NULL) {
-        printf("Invalid window handle.\n");
+        clwLog(LEVEL_ERROR, "Invalid window handle");
         return;
     }
 
@@ -123,12 +125,12 @@ void sendKeyStroke(HWND hwnd, WPARAM key) {
     LPARAM lParam = (MapVirtualKey(key, MAPVK_VK_TO_VSC) << 16) | 1;
 
     if (!PostMessageA(hwnd, WM_KEYDOWN, key, lParam)) {
-        printf("Failed to send WM_KEYDOWN message.\n");
+        clwLog(LEVEL_ERROR, "Failed to send WM_KEYDOWN message");
     }
 
     lParam = (MapVirtualKey(key, MAPVK_VK_TO_VSC) << 16) | (1 << 30) | (1 << 31);
     if (!PostMessageA(hwnd, WM_KEYUP, key, lParam)) {
-        printf("Failed to send WM_KEYUP message.\n");
+        clwLog(LEVEL_ERROR, "Failed to send WM_KEYUP message");
     }
 }
 

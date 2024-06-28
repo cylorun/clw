@@ -8,6 +8,6 @@ enum LogLevel {
     LEVEL_DEBUG
 };
 
-void clwLog(enum LogLevel logLevel, char* msg);
+void clwLog(enum LogLevel logLevel, char* format, ...);
 
 #endif
